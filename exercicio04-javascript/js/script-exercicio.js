@@ -60,28 +60,38 @@
     Escreva seu código abaixo:
 */
 
-    let missao = document.querySelectorAll(".missao");
+   let missao = document.querySelectorAll(".missao");
 
-    missao.forEach(function(missao){
+missao.forEach(function (missao) {
 
-    let botaoDetalhes = missao.querySelector ('.botao-detalhes')
+    let botaoDetalhes = missao.querySelector('.botao-detalhes')
 
     let detalhes = missao.querySelector('.detalhes')
 
-    botaoDetalhes.addEventListener("click", function(){
- 
-        if(detalhes.hidden){
+    let botaoSelecionar = missao.querySelector('.botao-selecionar')
+
+    botaoDetalhes.addEventListener("click", function () {
+
+        if (detalhes.hidden) {
             detalhes.hidden = false
             botaoDetalhes.setAttribute("aria-expanded", "true")
             botaoDetalhes.textContent = "Ocultar detalhes"
         }
- 
-        else{
+
+        else {
             detalhes.hidden = true
             botaoDetalhes.setAttribute("aria-expanded", "false")
             botaoDetalhes.textContent = "Ver detalhes"
         }
 
-    
-})
     })
+        botaoSelecionar.addEventListener("click", function () {
+            let selecionada = missao.classList.toggle('selecionada');
+            botaoDetalhes.setAttribute("aria-pressed", selecionada);
+            if (selecionada) {
+                botaoSelecionar.textContent = "Missão selecionada";
+            } else {
+                botaoSelecionar.textContent = "Selecionar missão";
+            }
+    })
+})
